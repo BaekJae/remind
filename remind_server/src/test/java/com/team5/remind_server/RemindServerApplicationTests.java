@@ -1,10 +1,10 @@
-package com.team5.remind_backend;
+package com.team5.remind_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RemindBackendApplicationTests {
+class RemindServerApplicationTests {
 
     @Test
     void contextLoads() {
