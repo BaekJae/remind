@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team5.board.mapper.BoardMapper">
+    <sql id="boardColumns">
+          noteId
+        , boardId
+        , noteWriter
+        , noteWritedDate
+        , noteWritedTime
+        , noteContent
+        , noteImage
+        , noteViews
+        , notePrefer
+        , noteIsExpert
+        , noteTitle
+        , noteUpdatedDate
+        , noteUpdatedTime
+    </sql>
+
+    <insert id="insertBoard" parameterType="BoardDTO">
+            INSERT INTO notes(
+                              <include refid="boardColumns" />
+            ) VALUES (
+                        #{noteId}
+                      , #{boardId}
+                      , #{noteWriter}
+                      , CURRENT_DATE
+                      , CURRENT_TIME
+                      , #{noteContent}
+                      , #{noteImage}
+                      , 0
+                      , 0
+                      , 0
+                      , #{noteTitle}
+                      , NULL
+                      , NULL
+        )
+    </insert>
+
+    <select id="selectBoardDetail" parameterType="int" resultType="BoardDTO">
+        SELECT
+                <include refid="boardColumns" />
+        FROM
+                notes
+        WHERE
+                noteId = #{idx}
+    </select>
+
+    <select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
+        SELECT
+            <include refid="boardColumns" />
+        FROM
+            notes
+    </select>
+
+    <select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            notes
+    </select>
+
+    <update id="updateBoard" parameterType="BoardDTO">
+        UPDATE notes
+        SET
+            noteUpdatedDate = CURRENT_DATE
+        ,   noteUpdatedTime = CURRENT_TIME
+        ,   noteTitle = #{noteTitle}
+        ,   noteContent = #{noteContent}
+        ,   noteImage = #{noteImage}
+        WHERE
+            noteId = #{noteId}
+    </update>
+
+</mapper>
