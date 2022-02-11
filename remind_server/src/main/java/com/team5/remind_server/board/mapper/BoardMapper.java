@@ -1,10 +1,9 @@
-package com.team5.board.mapper;
+package com.team5.remind_server.board.mapper;
 
 import java.util.List;
 
+import com.team5.remind_server.board.domain.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
-
-import com.team5.board.domain.BoardDTO;
 
 @Mapper
 public interface BoardMapper {

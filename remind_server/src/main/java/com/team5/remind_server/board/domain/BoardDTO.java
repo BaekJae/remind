@@ -1,4 +1,4 @@
-package com.team5.board.domain;
+package com.team5.remind_server.board.domain;
 
 import java.time.LocalTime;
 import java.time.LocalDate;

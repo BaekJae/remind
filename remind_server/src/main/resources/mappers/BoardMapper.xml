@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.team5.board.mapper.BoardMapper">
+<mapper namespace="com.team5.remind_server.board.mapper.BoardMapper">
     <sql id="boardColumns">
           noteId
         , boardId
@@ -18,7 +18,7 @@
         , noteUpdatedTime
     </sql>
 
-    <insert id="insertBoard" parameterType="BoardDTO">
+    <insert id="insertBoard" parameterType="com.team5.remind_server.board.domain.BoardDTO">
             INSERT INTO notes(
                               <include refid="boardColumns" />
             ) VALUES (
@@ -38,7 +38,7 @@
         )
     </insert>
 
-    <select id="selectBoardDetail" parameterType="int" resultType="BoardDTO">
+    <select id="selectBoardDetail" parameterType="int" resultType="com.team5.remind_server.board.domain.BoardDTO">
         SELECT
                 <include refid="boardColumns" />
         FROM
@@ -47,21 +47,21 @@
                 noteId = #{idx}
     </select>
 
-    <select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
+    <select id="selectBoardList" resultType="com.team5.remind_server.board.domain.BoardDTO">
         SELECT
             <include refid="boardColumns" />
         FROM
             notes
     </select>
 
-    <select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+    <select id="selectBoardTotalCount" parameterType="com.team5.remind_server.board.domain.BoardDTO" resultType="int">
         SELECT
             COUNT(*)
         FROM
             notes
     </select>
 
-    <update id="updateBoard" parameterType="BoardDTO">
+    <update id="updateBoard" parameterType="com.team5.remind_server.board.domain.BoardDTO">
         UPDATE notes
         SET
             noteUpdatedDate = CURRENT_DATE
