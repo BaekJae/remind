@@ -15,6 +15,10 @@ public interface BoardMapper {
 
     public int selectBoardTotalCount();
 
+    public void increasingViews(int idx);
+
+    public int recommend(int idx);
+
     //Insert Section(C)
     public int insertBoard(BoardDTO params);
 
@@ -22,6 +26,6 @@ public interface BoardMapper {
     public int updateBoard(BoardDTO params);
 
     //Delete Section(D)
-    public int deleteBoard(BoardDTO params);
+    public int deleteBoard(int idx);
 
 }

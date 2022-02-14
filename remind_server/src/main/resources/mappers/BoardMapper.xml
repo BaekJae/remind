@@ -20,10 +20,9 @@
 
     <insert id="insertBoard" parameterType="com.team5.remind_server.board.domain.BoardDTO">
             INSERT INTO notes(
-                              <include refid="boardColumns" />
+                             boardId, noteWriter, noteWritedDate, noteWritedTime, noteContent, noteImage, noteViews, notePrefer, noteIsExpert, noteTitle, noteUpdatedDate, noteUpdatedTime
             ) VALUES (
-                        #{noteId}
-                      , #{boardId}
+                      #{boardId}
                       , #{noteWriter}
                       , CURRENT_DATE
                       , CURRENT_TIME
@@ -73,4 +72,24 @@
             noteId = #{noteId}
     </update>
 
+    <update id="increasingViews" parameterType="int">
+        UPDATE notes
+        SET
+            noteViews = noteViews + 1
+        WHERE
+              noteId = #{idx}
+    </update>
+
+    <update id="recommend" parameterType="int">
+        UPDATE notes
+        SET
+            notePrefer = notePrefer + 1
+        WHERE
+            noteId = #{idx}
+    </update>
+    <delete id="deleteBoard" parameterType="int">
+        DELETE
+        FROM notes
+        WHERE noteId = #{idx}
+    </delete>
 </mapper>
