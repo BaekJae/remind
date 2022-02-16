@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team5.remind_server.diary.mapper.DiaryMapper">
+    <sql id="diaryColumns">
+        diaryId
+        , diaryDate
+        , diaryContent
+        , diaryTitle
+    </sql>
+
+    <insert id="createDiary" parameterType="com.team5.remind_server.diary.domain.DiaryDTO">
+        INSERT INTO diaryN(
+            diaryId, diaryDate, diaryContent, diaryTitle
+        ) VALUES (
+                     #{diaryId}
+                 , #{diaryDate}
+                 , #{diaryContent}
+                 , #{diaryTitle}
+        )
+    </insert>
+
+    <select id="readDiary" parameterType="int" resultType="com.team5.remind_server.diary.domain.DiaryDTO">
+        SELECT
+        <include refid="diaryColumns" />
+        FROM
+        diaryN
+        WHERE
+        diaryId = #{idx}
+    </select>
+
+    <update id="updateDiary" parameterType="com.team5.remind_server.diary.domain.DiaryDTO">
+        UPDATE diaryN
+        SET
+              diaryDate = #{diaryDate}
+          ,   diaryTitle = #{diaryTitle}
+          ,   diaryContent = #{diaryContent}
+        WHERE
+            diaryId = #{diaryId}
+    </update>
+
+    <delete id="deleteDiary" parameterType="int">
+        DELETE
+        FROM diaryN
+        WHERE diaryId = #{idx}
+    </delete>
+
+</mapper>

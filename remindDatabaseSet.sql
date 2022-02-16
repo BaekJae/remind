@@ -53,6 +53,13 @@ create table diaryNotes(
  diaryNoteImage varchar(256)
 );
 
+create table diaryN(
+    diaryId int primary key auto_increment,
+    diaryDate Date not null,
+    diaryTitle varchar(500) not null,
+    diaryContent varchar(1000) not null
+);
+
 create table stamps(
  stampId int primary key,
  stampFeelId int not null
