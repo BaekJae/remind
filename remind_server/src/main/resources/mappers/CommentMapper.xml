@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team5.remind_server.board.mapper.CommentMapper">
+    <sql id="CommentColumns">
+        commentId
+        , noteId
+        , commentContent
+        , commentWriter
+        , commentRegisteredDate
+        , commentRegisteredTime
+        , commentModifiedDate
+        , commentModifiedTime
+    </sql>
+
+    <insert id="insertComment" parameterType="com.team5.remind_server.board.domain.CommentDTO">
+        INSERT INTO nt_comment(
+            noteId, commentContent, commentWriter, commentRegisteredDate, commentRegisteredTime, commentModifiedDate, commentModifiedTime
+        ) VALUES (
+                  #{noteId},
+                  #{commentContent},
+                  #{commentWriter},
+                  CURRENT_DATE,
+                  CURRENT_TIME,
+                  NULL,
+                  NULL
+        )
+    </insert>
+
+    <select id="getComment" parameterType="int" resultType="com.team5.remind_server.board.domain.CommentDTO">
+        SELECT
+        <include refid="CommentColumns" />
+        FROM
+        nt_comment
+        WHERE
+        noteId = #{id}
+    </select>
+
+    <select id="selectCommentTotalCount" parameterType="int" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+           nt_comment
+        WHERE
+            noteId = #{id}
+    </select>
+
+    <update id="updateComment" parameterType="com.team5.remind_server.board.domain.CommentDTO">
+        UPDATE nt_comment
+        SET
+            commentModifiedDate = CURRENT_DATE
+          ,   commentModifiedTime = CURRENT_TIME
+          ,   commentContent = #{commentContent}
+        WHERE
+            commentId = #{commentId}
+    </update>
+
+    <delete id="deleteBoard" parameterType="int">
+        DELETE
+        FROM nt_comment
+        WHERE commentId = #{id}
+    </delete>
+</mapper>
