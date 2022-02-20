@@ -10,16 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class UserService  implements UserDetailsService {
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:sss");
-    Date time = new Date();
-    String localtime = format.format(time);
 
     private final UserMapper userMapper;
 

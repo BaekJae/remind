@@ -5,8 +5,9 @@ import com.team5.remind_server.user.domain.SignVo;
 import com.team5.remind_server.user.domain.UserVo;
 import com.team5.remind_server.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,22 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @RestController
+@Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/user/*")
+@RequestMapping("/auth/*")
 public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private final JwtTokenProvider jwtTokenProvider;
+
     private final UserService userService;
 
-    private final JwtTokenProvider jwtTokenProvider;
     @RequestMapping(path="/register", method=RequestMethod.POST)
     public void register(@RequestBody UserVo userVo){
+
         userService.joinUser(userVo);
+    }
+
+    @RequestMapping(path="/getUserId", method=RequestMethod.POST)
+    public String getUserId(@RequestBody SignVo tokenSignVo){ //사용자 아이디 리턴
+        String inputToken = tokenSignVo.getToken();
+        return jwtTokenProvider.getUserPk(inputToken);
     }
 
     @RequestMapping(path="/login", method = RequestMethod.POST)
@@ -46,11 +55,5 @@ public class UserController {
         signVo.setResult("success");
         signVo.setToken(jwtTokenProvider.createToken(member.getUserId(), roleList));
         return signVo;
-    }
-
-    @RequestMapping(path="/user_access", method=RequestMethod.GET)
-    public UserVo userAccess(Authentication authentication){
-        UserVo userVo = (UserVo) authentication.getPrincipal();
-        return userVo;
     }
 }
