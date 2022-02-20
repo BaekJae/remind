@@ -49,8 +49,9 @@ public class BoardServiceImpl implements BoardService {
 
     //Insert
     @Override
-    public int insertBoard(BoardDTO params){
+    public int insertBoard(String userId, BoardDTO params){
         log.info("Insert notes");
+        params.setNoteWriter(userId);
         return boardMapper.insertBoard(params);
     }
 

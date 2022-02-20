@@ -26,7 +26,7 @@ public interface BoardService {
     //Insert Section(C)
 
     //게시글 작성
-    public int insertBoard(BoardDTO params);
+    public int insertBoard(String userId, BoardDTO params);
 
     //Update Section(U)
 

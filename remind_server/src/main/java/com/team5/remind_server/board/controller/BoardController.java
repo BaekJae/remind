@@ -4,6 +4,7 @@ import com.team5.remind_server.board.domain.BoardDTO;
 import com.team5.remind_server.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,14 +44,14 @@ public class BoardController {
     }
     //게시글 작성
     @RequestMapping(path="/register", method = RequestMethod.POST)
-    public int insertNotes(@RequestBody BoardDTO board){
+    public int insertNotes(@AuthenticationPrincipal String userId, @RequestBody BoardDTO board){
         log.info("register DTO: " + board);
-        return boardService.insertBoard(board);
+        return boardService.insertBoard(userId, board);
     }
 
     //게시글 삭제
     @RequestMapping(path="/delete/{id}", method = RequestMethod.DELETE)
-    public int deleteNotes(@PathVariable int id){
+    public int deleteNotes(@AuthenticationPrincipal String userId, @PathVariable int id){
         log.info("Trying to delete note has " + id + " noteId");
         return boardService.deleteBoard(id);
     }
@@ -64,7 +65,7 @@ public class BoardController {
 
     //게시글 수정
     @RequestMapping(path="/update", method = RequestMethod.PUT)
-    public int updateNotes(@RequestBody BoardDTO board){
+    public int updateNotes(@AuthenticationPrincipal String userId, @RequestBody BoardDTO board) throws Exception{
         log.info("update DTO: " + board);
         return boardService.updateBoard(board);
     }
