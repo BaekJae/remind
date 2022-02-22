@@ -46,11 +46,14 @@
                 noteId = #{idx}
     </select>
 
-    <select id="selectBoardList" resultType="com.team5.remind_server.board.domain.BoardDTO">
+    <select id="selectBoardList" parameterType="int" resultType="com.team5.remind_server.board.domain.BoardDTO">
         SELECT
             <include refid="boardColumns" />
         FROM
             notes
+        WHERE
+            noteId > 0
+        limit #{pageStart}, 8
     </select>
 
     <select id="selectBoardTotalCount" parameterType="com.team5.remind_server.board.domain.BoardDTO" resultType="int">

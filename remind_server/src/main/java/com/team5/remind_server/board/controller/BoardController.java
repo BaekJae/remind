@@ -19,9 +19,9 @@ public class BoardController {
 
     //검색 영역
     @RequestMapping(path="/list", method=RequestMethod.GET)
-    public List<BoardDTO> getBoard(){
+    public List<BoardDTO> getBoard(@RequestParam("pageNum") int pageNum){
         log.info("boardList in");
-        return boardService.getBoardList();
+        return boardService.getBoardList(pageNum);
     }
 
     @RequestMapping(path="/detail/{id}", method = RequestMethod.GET)

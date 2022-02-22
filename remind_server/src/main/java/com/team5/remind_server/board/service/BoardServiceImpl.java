@@ -18,9 +18,10 @@ public class BoardServiceImpl implements BoardService {
     //Select
 
     @Override
-    public List<BoardDTO> getBoardList(){
+    public List<BoardDTO> getBoardList(int pageNum){
         log.info("Board List GET");
-        return boardMapper.selectBoardList();
+        int requestPageNum = 8 * (pageNum-1);
+        return boardMapper.selectBoardList(requestPageNum);
     }
 
     @Override

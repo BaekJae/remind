@@ -9,7 +9,7 @@ public interface BoardService {
     //Search Section(R)
 
     //게시글 목록 얻어오기
-    public List<BoardDTO> getBoardList();
+    public List<BoardDTO> getBoardList(int pageNum);
 
     //게시글 세부사항 보기
     public BoardDTO selectBoardDetail(int idx);

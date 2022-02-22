@@ -4,6 +4,7 @@ import com.team5.remind_server.board.domain.CommentDTO;
 import com.team5.remind_server.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,9 +33,9 @@ public class CommentController {
 
     //댓글 삽입
     @RequestMapping(path="/register", method=RequestMethod.POST)
-    public int insertComment(@RequestBody CommentDTO params){
+    public int insertComment(@AuthenticationPrincipal String userId, @RequestBody CommentDTO params){
         log.info("Comment register: " + params);
-        return commentService.insertComment(params);
+        return commentService.insertComment(userId, params);
     }
 
     //댓글 수정
