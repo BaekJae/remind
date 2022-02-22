@@ -24,16 +24,16 @@ class BoardCards extends React.Component{
             .then((count) => {
                 this.setState({totalCount:count});
             })
-        
+
     }
-    
+
     componentDidUpdate(){
         const token = localStorage.getItem("ACCESS_TOKEN");
         call("/board/list?pageNum="+this.state.pageNum, "GET", null, token)
         .then((response) => {
-            if(response || response[0].noteId !== this.state.items[0].noteId){
+            if(this.state.items == undefined || response[0].noteId !== this.state.items[0].noteId){
                 this.setState({items: response});
-            }    
+            }
         });
     }
 
@@ -93,7 +93,7 @@ class BoardCards extends React.Component{
                         </Card>
                     </Grid>
                 ))}
-                
+
             </Grid>
             <Pagination
             activePage={this.state.pageNum}
