@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
 
@@ -25,19 +26,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     private final UserService userService;
 
+    private final JwtTokenProvider jwtTokenProvider;
+
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                .cors().disable()
+                .cors().and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/", "/auth/**","/board/**", "/comment/**").permitAll()
-                .antMatchers("/board/delete","/board/register", "/board/update").hasAnyAuthority()
-                .antMatchers("/comment/register", "/comment/modify", "/comment/delete/**").hasAnyAuthority();
+                .authorizeRequests().antMatchers("/board/delete","/board/register", "/board/update").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/comment/register", "/comment/modify", "/comment/delete/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/", "/auth/**","/board/**", "/comment/**").permitAll();
+
 
         http.addFilterAfter(
                 jwtAuthenticationFilter,

@@ -23,7 +23,7 @@ public class UserService  implements UserDetailsService {
         log.info("UserVo: " + userVo);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         userVo.setUserPassword(passwordEncoder.encode(userVo.getPassword()));
-        userVo.setUserAuth("USER");
+        userVo.setUserAuth("ROLE_USER");
         userMapper.saveUser(userVo);
     }
 

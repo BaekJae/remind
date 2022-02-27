@@ -19,9 +19,9 @@ public class BoardController {
 
     //검색 영역
     @RequestMapping(path="/list", method=RequestMethod.GET)
-    public List<BoardDTO> getBoard(@RequestParam("pageNum") int pageNum){
+    public List<BoardDTO> getBoard(@RequestParam("pageNum") int pageNum, @RequestParam("boardId") int boardId){
         log.info("boardList in");
-        return boardService.getBoardList(pageNum);
+        return boardService.getBoardList(pageNum,boardId);
     }
 
     @RequestMapping(path="/detail/{id}", method = RequestMethod.GET)
@@ -31,10 +31,10 @@ public class BoardController {
         return boardService.selectBoardDetail(id);
     }
 
-    @RequestMapping(path="/count", method = RequestMethod.GET)
-    public int getNoteCount(){
+    @RequestMapping(path="/count/{boardId}", method = RequestMethod.GET)
+    public int getNoteCount(@PathVariable int boardId){
         log.info("Count in");
-        return boardService.selectBoardTotalCount();
+        return boardService.selectBoardTotalCount(boardId);
     }
 
     @RequestMapping(path="/recommend/{id}")

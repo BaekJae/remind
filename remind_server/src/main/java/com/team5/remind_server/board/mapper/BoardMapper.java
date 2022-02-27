@@ -11,9 +11,9 @@ public interface BoardMapper {
     //Search Section(R)
     public BoardDTO selectBoardDetail(int idx);
 
-    public List <BoardDTO> selectBoardList(int pageNum);
+    public List <BoardDTO> selectBoardList(int pageNum,int boardId);
 
-    public int selectBoardTotalCount();
+    public int selectBoardTotalCount(int boardId);
 
     public void increasingViews(int idx);
 

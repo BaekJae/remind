@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  height: 100%;
+}
+
+#root{
+  height: 100%;
 }
 
 .App-logo {
@@ -7,12 +12,11 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.MainLayout {
+  background-image: url("./mainBackground.jpg");
+  background-size: cover;
+  color: white;
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,11 +32,158 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html, body{
+  height:100%;
+}
+
+.bg-image1 {
+  /* The image used */
+  background-image: url("./chat.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-image2 {
+  /* The image used */
+  background-image: url("./StudyPicture.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-image3 {
+  /* The image used */
+  background-image: url("./Writebackground.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  height: 25vh;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-text2 {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  left: 23%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50%;
+  height: 95%;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-text3 {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  left: 77%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50%;
+  height: 95%;
+  padding: 20px;
+  text-align: center;
+}
+
+.studySelection{
+  background-image: url("./study.jpg");
+  display: inline-block;
+  width:50%;
+  height:100%;
+  background-size: 100% 100%;
+}
+
+.chatSelection{
+  background-image: url("./chat.jpg");
+  display: inline-block;
+  width:50%;
+  height:100%;
+  background-size: 100% 100%;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  line-height: 0.5;
 }

@@ -9,13 +9,13 @@ public interface BoardService {
     //Search Section(R)
 
     //게시글 목록 얻어오기
-    public List<BoardDTO> getBoardList(int pageNum);
+    public List<BoardDTO> getBoardList(int pageNum, int boardId);
 
     //게시글 세부사항 보기
     public BoardDTO selectBoardDetail(int idx);
 
     //게시글 개수 얻어오기
-    public int selectBoardTotalCount();
+    public int selectBoardTotalCount(int boardId);
 
     //조회수 올리기
     public void increasingViews(int idx);

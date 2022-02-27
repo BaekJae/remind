@@ -52,15 +52,17 @@
         FROM
             notes
         WHERE
-            noteId > 0
-        limit #{pageStart}, 8
+            noteId > 0 AND boardId = #{boardId}
+        limit #{pageNum}, 8
     </select>
 
-    <select id="selectBoardTotalCount" parameterType="com.team5.remind_server.board.domain.BoardDTO" resultType="int">
+    <select id="selectBoardTotalCount" parameterType="int" resultType="int">
         SELECT
             COUNT(*)
         FROM
             notes
+        WHERE
+            boardId = #{boardId}
     </select>
 
     <update id="updateBoard" parameterType="com.team5.remind_server.board.domain.BoardDTO">

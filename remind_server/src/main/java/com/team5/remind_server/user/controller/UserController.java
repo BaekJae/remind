@@ -31,7 +31,6 @@ public class UserController {
 
     @RequestMapping(path="/register", method=RequestMethod.POST)
     public void register(@RequestBody UserVo userVo){
-
         userService.joinUser(userVo);
     }
 
@@ -52,7 +51,7 @@ public class UserController {
         }
         List<String> roleList = Arrays.asList(member.getUserAuth().split(","));
         signVo.setResult("success");
-        signVo.setToken(jwtTokenProvider.createToken(member.getUserId(), roleList));
+        signVo.setToken(jwtTokenProvider.createToken(member.getUserId(),roleList));
         return signVo;
     }
 }

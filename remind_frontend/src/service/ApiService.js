@@ -4,9 +4,9 @@ export function call(api, method, request, token){
     let options = {
         headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
+            "Authorization": "Bearer " + token
         }),
-        url: API_BASE_URL+api,
+        url: API_BASE_URL + api,
         method: method,
     };
     if(request){

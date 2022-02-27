@@ -23,7 +23,7 @@ class BoardComment extends React.Component{
     changeHandler = (e) => {
         this.setState({commentContent: e.target.value});
     }
-    
+
     clickHandler = (e) => {
         let commentInput = {};
         const token = localStorage.getItem("ACCESS_TOKEN");
@@ -39,14 +39,15 @@ class BoardComment extends React.Component{
 
     render(){
         return(
-            <div className='commentArea'>
+            <div className='commentArea' style={{"width":"90%","margin":"auto"}}>
                 <h3> 댓글 </h3>
                 <br/>
-                <div className='commentInsertArea' style={{"width":"80%"}}>
+                <div className='commentInsertArea' style={{"width":"80%", "paddingLeft":"10%", "paddingBottom": "5%"}}>
                     <div className='commentContentInput'>
                         <TextField
                             id='commentContent'
                             variant= 'outlined'
+                            size="small"
                             onChange = {this.changeHandler}
                             style={{"width":"80%"}}
                         />
@@ -58,24 +59,24 @@ class BoardComment extends React.Component{
                             작성
                         </Button>
                     </div>
-                    
+
                 </div>
                 {this.state.comments && this.state.comments.map((comment) => (
-                    <div className='comment'>
-                        <div className='commentHeader'>
+                    <div className='comment' style={{"marginTop":"1%"}}>
+                        <div className='commentHeader' style={{"height":"2vh","borderStyle":"solid","borderWidth": "0 0 thin"}}>
                             <div className='commentWriter' style={{"float": "left"}}>
                                 {comment.commentWriter}
                             </div>
-                            <div className='commentWritedDate' style={{"float": "right"}}>
-                                {comment.commentRegisteredDate}&nbsp;&nbsp;{comment.commentRegisteredTime}
+                            <div className='commentWritedDate' style={{"float": "left"}}>
+                                &nbsp;&nbsp;{comment.commentRegisteredDate}&nbsp;&nbsp;{comment.commentRegisteredTime}
                             </div>
                         </div>
-                        <div className="commentContent">
-                            {comment.commentContent}
+                        <div className="commentContent" style={{"width":"80%", "margin":"auto"}}>
+                            <span style={{"float":"left"}}>{comment.commentContent}</span>
                         </div>
                     </div>
                 ))}
-            </div> 
+            </div>
         )
     }
 }
