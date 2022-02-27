@@ -50,37 +50,3 @@ public class DiaryController{
 
 }
 
-
-
-
-
-
-
-//import com.team5.remind_server.diary.entity.DiaryEntity;
-//import com.team5.remind_server.diary.service.DiaryService;
-//import lombok.RequiredArgsConstructor;
-//import lombok.extern.log4j.Log4j2;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//@RestController
-//@Log4j2
-//@RequiredArgsConstructor
-//@RequestMapping("/diary")
-//public class DiaryController {
-//    @Autowired
-//    private DiaryService diaryService;
-//
-//    @RequestMapping(value = "/", method = RequestMethod.GET)// calendar
-//    public String calendar(){
-//        //calender
-//        return "calendar.html";//temp html
-//    }
-//
-//    //@RequestMapping(value = "/post", method = RequestMethod.POST)
-//    @PostMapping("/post")
-//    public DiaryEntity writeDiary(@RequestBody DiaryEntity diaryEntity){ // write diary
-//        return diaryService.createDiary(diaryEntity);
-//    }
-//
-//}

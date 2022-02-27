@@ -11,10 +11,10 @@
 
     <insert id="createDiary" parameterType="com.team5.remind_server.diary.domain.DiaryDTO">
         INSERT INTO diaryN(
-            diaryId, diaryDate, diaryContent, diaryTitle
+             diaryDate, diaryContent, diaryTitle
         ) VALUES (
-                     #{diaryId}
-                 , #{diaryDate}
+
+                  #{diaryDate}
                  , #{diaryContent}
                  , #{diaryTitle}
         )

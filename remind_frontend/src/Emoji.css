@@ -1,0 +1,36 @@
+
+.Emoji{
+    width: 350px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+@font-face {
+    font-family: 'Cafe24Shiningstar';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#EmojiLetter{
+    font-family: 'Cafe24Shiningstar';
+    font-size: 150px;
+    text-align:center;
+}
+
+.foot{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	padding: 15px 0;
+    text-align:center;
+    bottom: 0px;
+}
+.foot img{
+    width: 5%;
+    bottom: 0;
+}
+
