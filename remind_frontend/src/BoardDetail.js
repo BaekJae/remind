@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { call } from './service/ApiService';
-import {  useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Button } from '@material-ui/core';
 import BoardComment from './BoardComment';
@@ -12,6 +12,7 @@ const BoardDetail = (props) => {
     const [boardDetail, setBoardDetail] = useState({});
     const [isUpdated, setIsUpdated] = useState(false);
     const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem("ACCESS_TOKEN");
@@ -31,6 +32,23 @@ const BoardDetail = (props) => {
             .then((response) => {
                 alert("추천이 완료되었습니다.");
                 setIsUpdated(!isUpdated);
+            })
+    }
+
+    const clickHandler2 = (e) => {
+        const token = localStorage.getItem("ACCESS_TOKEN");
+        window.location.href="/board/update?id=" + params.id;
+    }
+
+    const clickHandler3 = (e) => {
+        const token = localStorage.getItem("ACCESS_TOKEN");
+        call('/board/delete/' + params.id, "DELETE", null, token)
+            .then((response) => {
+                alert("게시글 삭제 완료");
+                navigate(-1);
+            })
+            .catch(() => {
+                alert("게시글 삭제 실패");
             })
     }
     return(
@@ -68,8 +86,20 @@ const BoardDetail = (props) => {
                             onClick={clickHandler}
                         > 추천하기</Button>
                     </div>
-
-
+                    <div className="ModifyBtn" style={{"float":"left", "marginLeft":"10%"}}>
+                        <Button
+                            variant='outlined'
+                            size='small'
+                            onClick={clickHandler2}
+                        > 수정하기</Button>
+                    </div>
+                    <div className="DeleteBtn" style={{"float":"left", "marginLeft":"10%"}}>
+                        <Button
+                            variant='outlined'
+                            size='small'
+                            onClick={clickHandler3}
+                        > 삭제하기</Button>
+                    </div>
                 </div>
                 <hr style={{"width":"90%", "margin":"auto"}}/>
                 <BoardComment noteId={params.id}/>

@@ -92,6 +92,7 @@
         WHERE
             noteId = #{idx}
     </update>
+
     <delete id="deleteBoard" parameterType="int">
         DELETE
         FROM notes

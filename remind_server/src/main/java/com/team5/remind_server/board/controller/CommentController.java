@@ -34,8 +34,10 @@ public class CommentController {
     //댓글 삽입
     @RequestMapping(path="/register", method=RequestMethod.POST)
     public int insertComment(@AuthenticationPrincipal String userId, @RequestBody CommentDTO params){
+        log.info("Setter: " + userId);
+        params.setCommentWriter(userId);
         log.info("Comment register: " + params);
-        return commentService.insertComment(userId, params);
+        return commentService.insertComment(params);
     }
 
     //댓글 수정

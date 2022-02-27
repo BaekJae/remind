@@ -12,7 +12,7 @@ public interface CommentService {
     public int selectCommentTotalCount(int id);
 
     //댓글 삽입하기(C)
-    public int insertComment(String userId, CommentDTO params);
+    public int insertComment(CommentDTO params);
 
     //댓글 수정하기(U)
     public int updateComment(CommentDTO params);

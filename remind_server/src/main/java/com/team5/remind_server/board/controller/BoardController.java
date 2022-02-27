@@ -64,8 +64,9 @@ public class BoardController {
     }
 
     //게시글 수정
-    @RequestMapping(path="/update", method = RequestMethod.PUT)
-    public int updateNotes(@AuthenticationPrincipal String userId, @RequestBody BoardDTO board) throws Exception{
+    @RequestMapping(path="/update/{id}", method = RequestMethod.PUT)
+    public int updateNotes(@AuthenticationPrincipal String userId, @PathVariable int id, @RequestBody BoardDTO board) throws Exception{
+        board.setNoteId(id);
         log.info("update DTO: " + board);
         return boardService.updateBoard(board);
     }

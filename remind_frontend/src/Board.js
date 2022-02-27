@@ -4,6 +4,7 @@ import BoardList from './BoardList';
 import BoardDetail from './BoardDetail';
 import BoardRegister from './BoardRegister';
 import BoardSelectPage from "./BoardSelectPage";
+import BoardUpdate from "./BoardUpdate";
 
 function Board(){
 
@@ -13,6 +14,7 @@ function Board(){
             <Route path="/list" element={<BoardList/>}/>
             <Route path="/detail/:id" element={<BoardDetail/>}/>
             <Route path="/register" element={<BoardRegister/>}/>
+            <Route path="/update" element={<BoardUpdate/>}/>
         </Routes>
         )
     }

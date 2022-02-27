@@ -33,9 +33,8 @@ public class CommentServiceImpl implements CommentService{
 
     //댓글 삽입하기(C)
     @Override
-    public int insertComment(String userId, CommentDTO params){
+    public int insertComment(CommentDTO params){
         log.info("Insert Comment: " + params);
-        params.setCommentWriter(userId);
         return commentMapper.insertComment(params);
     }
 

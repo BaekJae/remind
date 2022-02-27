@@ -3,6 +3,8 @@ import moment from 'moment';
 import BoardClickArea from "./BoardClickArea";
 import DiaryClickArea from "./DiaryClickArea";
 import SettingsClickArea from "./SettingsClickArea";
+import UserInfo from "./UserInfo";
+import {Link} from 'react-router-dom';
 
 class Main extends React.Component{
     constructor(props){
@@ -42,6 +44,8 @@ class Main extends React.Component{
                             {nowDate}
                         </span>
                     </div>
+                    <UserInfo/>
+
                 </div>
                 <BoardClickArea/>
                 <DiaryClickArea/>
